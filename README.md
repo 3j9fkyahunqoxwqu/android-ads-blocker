@@ -55,7 +55,7 @@ In this case you definitively need other apps because even you block xyz domain 
 
 ## Drawbacks
 * Since I not use e.g. Facebook I block it, so you possible need to commit out everything with Facebook,...
-
+* It does not filter https
 
 
 Research:
