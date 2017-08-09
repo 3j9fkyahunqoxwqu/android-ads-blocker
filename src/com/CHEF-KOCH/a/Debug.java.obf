@@ -1,0 +1,67 @@
+package a.a.a;
+
+import android.os.Looper;
+import android.util.Log;
+
+public class a
+{
+  private static boolean a = true;
+  private static int b = 65535;
+  private static b c = null;
+  private static boolean d = true;
+  
+  private static void a(int paramInt, String paramString1, String paramString2)
+  {
+    if ((a) && ((b & paramInt) == paramInt))
+    {
+      if (c != null) {
+        c.a(paramInt, paramString1, paramString2);
+      }
+    }
+    else {
+      return;
+    }
+    StringBuilder localStringBuilder = new StringBuilder("[libsuperuser][").append(paramString1).append("]");
+    if ((!paramString2.startsWith("[")) && (!paramString2.startsWith(" "))) {}
+    for (paramString1 = " ";; paramString1 = "")
+    {
+      Log.d("libsuperuser", paramString1 + paramString2);
+      return;
+    }
+  }
+  
+  public static void a(String paramString)
+  {
+    a(1, "G", paramString);
+  }
+  
+  public static boolean a()
+  {
+    return a;
+  }
+  
+  public static void b(String paramString)
+  {
+    a(2, "C", paramString);
+  }
+  
+  public static boolean b()
+  {
+    return d;
+  }
+  
+  public static void c(String paramString)
+  {
+    a(4, "O", paramString);
+  }
+  
+  public static boolean c()
+  {
+    return (a()) && (b());
+  }
+  
+  public static boolean d()
+  {
+    return (Looper.myLooper() != null) && (Looper.myLooper() == Looper.getMainLooper());
+  }
+}

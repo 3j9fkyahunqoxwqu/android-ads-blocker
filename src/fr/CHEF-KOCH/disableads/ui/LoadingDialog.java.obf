@@ -1,0 +1,47 @@
+package cn.wq.disableads.b;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
+
+class f
+  extends AsyncTask
+{
+  private ProgressDialog b;
+  
+  f(e paramE) {}
+  
+  protected Boolean a(Void... paramVarArgs)
+  {
+    return Boolean.valueOf(a.a(e.a(a)));
+  }
+  
+  protected void a(Boolean paramBoolean)
+  {
+    super.onPostExecute(paramBoolean);
+    if (paramBoolean.booleanValue())
+    {
+      paramBoolean = Toast.makeText(e.a(a).getActivity(), e.a(a).getString(2131427368), 1);
+      e.a(a).getActivity().sendBroadcast(new Intent("action_sort_change"));
+    }
+    for (;;)
+    {
+      paramBoolean.setGravity(17, 0, 0);
+      paramBoolean.show();
+      b.dismiss();
+      return;
+      paramBoolean = Toast.makeText(e.a(a).getActivity(), e.a(a).getString(2131427357), 0);
+    }
+  }
+  
+  protected void onPreExecute()
+  {
+    super.onPreExecute();
+    b = new ProgressDialog(e.a(a).getActivity());
+    b.setMessage(e.a(a).getString(2131427352));
+    b.setCancelable(false);
+    b.show();
+  }
+}

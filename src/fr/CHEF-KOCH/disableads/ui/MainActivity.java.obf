@@ -1,0 +1,254 @@
+package cn.wq.disableads.b;
+
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ac;
+import android.support.v4.view.ai;
+import android.support.v7.a.f;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.o;
+import android.text.ClipboardManager;
+import android.text.TextUtils.TruncateAt;
+import android.util.SparseBooleanArray;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Filter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import cn.wq.disableads.a.b;
+
+public abstract class q
+  extends x
+  implements ai, o, w
+{
+  private u i;
+  private r j;
+  private cn.wq.disableads.a k;
+  private SearchView l;
+  private MenuItem m;
+  
+  public q() {}
+  
+  protected abstract cn.wq.disableads.a a();
+  
+  public void a(android.support.v7.c.a paramA) {}
+  
+  public void a(android.support.v7.c.a paramA, int paramInt, long paramLong, boolean paramBoolean)
+  {
+    k.notifyDataSetChanged();
+  }
+  
+  public void a(ListView paramListView, View paramView, int paramInt, long paramLong)
+  {
+    super.a(paramListView, paramView, paramInt, paramLong);
+    j = new r(this, null);
+    j.execute(new Integer[] { Integer.valueOf(paramInt) });
+  }
+  
+  protected abstract void a(Integer... paramVarArgs);
+  
+  public boolean a(android.support.v7.c.a paramA, Menu paramMenu)
+  {
+    paramA.a().inflate(2131623936, paramMenu);
+    return true;
+  }
+  
+  public boolean a(android.support.v7.c.a paramA, MenuItem paramMenuItem)
+  {
+    int i3 = 0;
+    int n = 0;
+    int i1;
+    Object localObject;
+    int i4;
+    switch (paramMenuItem.getItemId())
+    {
+    default: 
+      return true;
+    case 2131361869: 
+      j = new r(this, null);
+      paramMenuItem = b().getCheckedItemIds();
+      i1 = paramMenuItem.length;
+      localObject = new Integer[i1];
+      for (;;)
+      {
+        if (n >= i1)
+        {
+          j.execute((Object[])localObject);
+          paramA.c();
+          return true;
+        }
+        localObject[n] = Integer.valueOf((int)paramMenuItem[n]);
+        n += 1;
+      }
+    case 2131361867: 
+      paramA = b().getCheckedItemIds();
+      i1 = paramA.length;
+      paramMenuItem = new StringBuilder();
+      n = 0;
+      if (n >= i1)
+      {
+        ((ClipboardManager)getActivity().getSystemService("clipboard")).setText(paramMenuItem.toString());
+        Toast.makeText(getActivity(), 2131427380, 0).show();
+        return true;
+      }
+      localObject = (b)k.getItem((int)paramA[n]);
+      if (k.b()) {
+        paramMenuItem.append(b);
+      }
+      for (;;)
+      {
+        paramMenuItem.append(" ");
+        n += 1;
+        break;
+        paramMenuItem.append(b.substring(b.lastIndexOf(".") + 1));
+      }
+    case 2131361866: 
+      paramMenuItem = b();
+      i4 = paramMenuItem.getCount();
+      localObject = paramMenuItem.getCheckedItemPositions();
+      if (localObject != null)
+      {
+        i1 = 0;
+        n = 0;
+        if (i1 < ((SparseBooleanArray)localObject).size()) {
+          break;
+        }
+      }
+      break;
+    }
+    for (;;)
+    {
+      i1 = i3;
+      if (n == i4)
+      {
+        n = 0;
+        label303:
+        if (n < i4) {}
+      }
+      for (;;)
+      {
+        k.notifyDataSetChanged();
+        return true;
+        if (((SparseBooleanArray)localObject).valueAt(i1)) {}
+        for (int i2 = 1;; i2 = 0)
+        {
+          n += i2;
+          i1 += 1;
+          break;
+        }
+        paramMenuItem.setItemChecked(n, false);
+        paramA.c();
+        n += 1;
+        break label303;
+        do
+        {
+          paramMenuItem.setItemChecked(i1, true);
+          i1 += 1;
+        } while (i1 < i4);
+      }
+      k.a();
+      return true;
+      n = 0;
+    }
+  }
+  
+  public boolean a(MenuItem paramMenuItem)
+  {
+    return true;
+  }
+  
+  public boolean a(String paramString)
+  {
+    return true;
+  }
+  
+  public boolean b(android.support.v7.c.a paramA, Menu paramMenu)
+  {
+    return true;
+  }
+  
+  public boolean b(MenuItem paramMenuItem)
+  {
+    l.setQuery(null, false);
+    return true;
+  }
+  
+  public boolean b(String paramString)
+  {
+    if (k != null) {
+      k.getFilter().filter(paramString);
+    }
+    return true;
+  }
+  
+  public void onActivityCreated(Bundle paramBundle)
+  {
+    super.onActivityCreated(paramBundle);
+    setHasOptionsMenu(true);
+    k = a();
+    i = t.a(b(), (f)getActivity(), this);
+    i.a(paramBundle);
+    int i1 = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+    int n = i1;
+    if (i1 == 0) {
+      n = 2131361826;
+    }
+    paramBundle = (TextView)getActivity().findViewById(n);
+    if (paramBundle != null)
+    {
+      paramBundle.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+      paramBundle.setMarqueeRepeatLimit(-1);
+      paramBundle.setFocusable(true);
+      paramBundle.setFocusableInTouchMode(true);
+      paramBundle.requestFocus();
+      paramBundle.setTextColor(getResources().getColor(17170443));
+    }
+  }
+  
+  public void onCreateOptionsMenu(Menu paramMenu, MenuInflater paramMenuInflater)
+  {
+    super.onCreateOptionsMenu(paramMenu, paramMenuInflater);
+    paramMenuInflater.inflate(2131623937, paramMenu);
+    m = paramMenu.findItem(2131361870);
+    l = ((SearchView)ac.a(m));
+    l.setQueryHint(getString(2131427391));
+    l.setOnQueryTextListener(this);
+    ac.a(m, this);
+  }
+  
+  public void onDestroyView()
+  {
+    super.onDestroyView();
+    if (ac.c(m)) {
+      ac.b(m);
+    }
+    i.a();
+    if (j != null) {
+      j.cancel(true);
+    }
+  }
+  
+  public boolean onOptionsItemSelected(MenuItem paramMenuItem)
+  {
+    switch (paramMenuItem.getItemId())
+    {
+    }
+    for (;;)
+    {
+      return super.onOptionsItemSelected(paramMenuItem);
+      getActivity().finish();
+      continue;
+      k.a();
+    }
+  }
+  
+  public void onSaveInstanceState(Bundle paramBundle)
+  {
+    super.onSaveInstanceState(paramBundle);
+    i.b(paramBundle);
+  }
+}

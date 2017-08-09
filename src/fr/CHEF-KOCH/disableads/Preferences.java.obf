@@ -1,0 +1,322 @@
+package cn.wq.disableservice;
+
+import a.a.a.d;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.ComponentInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ServiceInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Environment;
+import android.preference.PreferenceManager;
+import cn.wq.disableservice.a.a;
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+public class f
+{
+  public static final String a = Environment.getExternalStorageDirectory() + "/DS_backup.txt";
+  
+  public static int a(String paramString, PackageManager paramPackageManager)
+  {
+    return a(b(paramString, paramPackageManager), paramPackageManager);
+  }
+  
+  public static int a(String paramString, List paramList)
+  {
+    paramList = paramList.iterator();
+    int i = 0;
+    for (;;)
+    {
+      if (!paramList.hasNext()) {
+        return i;
+      }
+      if (nextservice.getPackageName().equals(paramString)) {
+        i += 1;
+      }
+    }
+  }
+  
+  public static int a(ComponentInfo[] paramArrayOfComponentInfo, PackageManager paramPackageManager)
+  {
+    int j = 0;
+    int m = paramArrayOfComponentInfo.length;
+    int i = 0;
+    for (;;)
+    {
+      if (i >= m) {
+        return j;
+      }
+      int k = j;
+      if (!a(paramArrayOfComponentInfo[i], paramPackageManager)) {
+        k = j + 1;
+      }
+      i += 1;
+      j = k;
+    }
+  }
+  
+  public static String a(String paramString)
+  {
+    return paramString.replaceAll(String.valueOf('?'), "");
+  }
+  
+  public static List a(Context paramContext)
+  {
+    return ((ActivityManager)paramContext.getSystemService("activity")).getRunningServices(60);
+  }
+  
+  public static List a(Context paramContext, boolean paramBoolean)
+  {
+    List localList1 = a(paramContext);
+    PackageManager localPackageManager = paramContext.getPackageManager();
+    List localList2 = localPackageManager.getInstalledApplications(0);
+    ArrayList localArrayList = new ArrayList();
+    Iterator localIterator = localList2.iterator();
+    ApplicationInfo localApplicationInfo;
+    do
+    {
+      if (!localIterator.hasNext())
+      {
+        localList2.clear();
+        Collections.sort(localArrayList, new g(PreferenceManager.getDefaultSharedPreferences(paramContext).getInt("sort", 0), Collator.getInstance(getResourcesgetConfigurationlocale)));
+        return localArrayList;
+      }
+      localApplicationInfo = (ApplicationInfo)localIterator.next();
+      if (!paramBoolean) {
+        break;
+      }
+    } while ((flags & 0x1) == 0);
+    for (;;)
+    {
+      ServiceInfo[] arrayOfServiceInfo = b(packageName, localPackageManager);
+      if (arrayOfServiceInfo == null) {
+        break;
+      }
+      a localA = new a();
+      c = arrayOfServiceInfo.length;
+      b = a(localApplicationInfo.loadLabel(localPackageManager).toString());
+      d = a(arrayOfServiceInfo, localPackageManager);
+      e = a(packageName, localList1);
+      a = packageName;
+      localArrayList.add(localA);
+      break;
+      if ((flags & 0x1) != 0) {
+        break;
+      }
+    }
+  }
+  
+  public static boolean a(ComponentInfo paramComponentInfo, PackageManager paramPackageManager)
+  {
+    return paramPackageManager.getComponentEnabledSetting(new ComponentName(packageName, name)) <= 1;
+  }
+  
+  public static boolean a(String paramString, Context paramContext)
+  {
+    boolean bool = true;
+    SharedPreferences localSharedPreferences = PreferenceManager.getDefaultSharedPreferences(paramContext);
+    switch (localSharedPreferences.getInt("type", 0))
+    {
+    default: 
+      bool = b(paramString);
+    }
+    do
+    {
+      do
+      {
+        return bool;
+      } while (d.a(paramString) != null);
+      localSharedPreferences.edit().putInt("type", 1).commit();
+      return a(paramString, paramContext);
+    } while (d.b(paramString) != null);
+    localSharedPreferences.edit().putInt("type", 2).commit();
+    return a(paramString, paramContext);
+  }
+  
+  public static boolean a(String paramString1, String paramString2, List paramList)
+  {
+    paramList = paramList.iterator();
+    ActivityManager.RunningServiceInfo localRunningServiceInfo;
+    do
+    {
+      if (!paramList.hasNext()) {
+        return false;
+      }
+      localRunningServiceInfo = (ActivityManager.RunningServiceInfo)paramList.next();
+    } while ((!service.getPackageName().equals(paramString1)) || (!service.getClassName().equals(paramString2)));
+    return true;
+  }
+  
+  /* Error */
+  public static boolean b(String paramString)
+  {
+    // Byte code:
+    //   0: aconst_null
+    //   1: astore_1
+    //   2: new 10	java/lang/StringBuilder
+    //   5: dup
+    //   6: ldc_w 257
+    //   9: invokespecial 260	java/lang/StringBuilder:<init>	(Ljava/lang/String;)V
+    //   12: aload_0
+    //   13: invokevirtual 28	java/lang/StringBuilder:append	(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    //   16: invokevirtual 32	java/lang/StringBuilder:toString	()Ljava/lang/String;
+    //   19: astore_2
+    //   20: invokestatic 266	java/lang/Runtime:getRuntime	()Ljava/lang/Runtime;
+    //   23: ldc_w 268
+    //   26: invokevirtual 272	java/lang/Runtime:exec	(Ljava/lang/String;)Ljava/lang/Process;
+    //   29: astore_0
+    //   30: new 274	java/io/DataOutputStream
+    //   33: dup
+    //   34: aload_0
+    //   35: invokevirtual 280	java/lang/Process:getOutputStream	()Ljava/io/OutputStream;
+    //   38: invokespecial 283	java/io/DataOutputStream:<init>	(Ljava/io/OutputStream;)V
+    //   41: astore_3
+    //   42: aload_3
+    //   43: aload_2
+    //   44: invokevirtual 287	java/lang/String:getBytes	()[B
+    //   47: invokevirtual 291	java/io/DataOutputStream:write	([B)V
+    //   50: aload_3
+    //   51: ldc_w 293
+    //   54: invokevirtual 296	java/io/DataOutputStream:writeBytes	(Ljava/lang/String;)V
+    //   57: aload_3
+    //   58: invokevirtual 299	java/io/DataOutputStream:flush	()V
+    //   61: aload_0
+    //   62: invokevirtual 303	java/lang/Process:waitFor	()I
+    //   65: pop
+    //   66: aload_3
+    //   67: ifnull +7 -> 74
+    //   70: aload_3
+    //   71: invokevirtual 306	java/io/DataOutputStream:close	()V
+    //   74: aload_0
+    //   75: ifnull +7 -> 82
+    //   78: aload_0
+    //   79: invokevirtual 309	java/lang/Process:destroy	()V
+    //   82: iconst_1
+    //   83: ireturn
+    //   84: astore_2
+    //   85: aconst_null
+    //   86: astore_0
+    //   87: aload_2
+    //   88: invokevirtual 312	java/lang/Exception:printStackTrace	()V
+    //   91: aload_0
+    //   92: ifnull +7 -> 99
+    //   95: aload_0
+    //   96: invokevirtual 306	java/io/DataOutputStream:close	()V
+    //   99: aload_1
+    //   100: ifnull +7 -> 107
+    //   103: aload_1
+    //   104: invokevirtual 309	java/lang/Process:destroy	()V
+    //   107: iconst_0
+    //   108: ireturn
+    //   109: astore_1
+    //   110: aconst_null
+    //   111: astore_2
+    //   112: aconst_null
+    //   113: astore_0
+    //   114: aload_2
+    //   115: ifnull +7 -> 122
+    //   118: aload_2
+    //   119: invokevirtual 306	java/io/DataOutputStream:close	()V
+    //   122: aload_0
+    //   123: ifnull +7 -> 130
+    //   126: aload_0
+    //   127: invokevirtual 309	java/lang/Process:destroy	()V
+    //   130: aload_1
+    //   131: athrow
+    //   132: astore_0
+    //   133: goto -51 -> 82
+    //   136: astore_0
+    //   137: goto -7 -> 130
+    //   140: astore_1
+    //   141: aconst_null
+    //   142: astore_2
+    //   143: goto -29 -> 114
+    //   146: astore_1
+    //   147: aload_3
+    //   148: astore_2
+    //   149: goto -35 -> 114
+    //   152: astore_2
+    //   153: aload_1
+    //   154: astore_3
+    //   155: aload_2
+    //   156: astore_1
+    //   157: aload_0
+    //   158: astore_2
+    //   159: aload_3
+    //   160: astore_0
+    //   161: goto -47 -> 114
+    //   164: astore_0
+    //   165: goto -58 -> 107
+    //   168: astore_2
+    //   169: aconst_null
+    //   170: astore_3
+    //   171: aload_0
+    //   172: astore_1
+    //   173: aload_3
+    //   174: astore_0
+    //   175: goto -88 -> 87
+    //   178: astore_2
+    //   179: aload_0
+    //   180: astore_1
+    //   181: aload_3
+    //   182: astore_0
+    //   183: goto -96 -> 87
+    // Local variable table:
+    //   start	length	slot	name	signature
+    //   0	186	0	paramString	String
+    //   1	103	1	localObject1	Object
+    //   109	22	1	localObject2	Object
+    //   140	1	1	localObject3	Object
+    //   146	8	1	localObject4	Object
+    //   156	25	1	localObject5	Object
+    //   19	25	2	str1	String
+    //   84	4	2	localException1	Exception
+    //   111	38	2	localObject6	Object
+    //   152	4	2	localObject7	Object
+    //   158	1	2	str2	String
+    //   168	1	2	localException2	Exception
+    //   178	1	2	localException3	Exception
+    //   41	141	3	localObject8	Object
+    // Exception table:
+    //   from	to	target	type
+    //   20	30	84	java/lang/Exception
+    //   20	30	109	finally
+    //   70	74	132	java/lang/Exception
+    //   78	82	132	java/lang/Exception
+    //   118	122	136	java/lang/Exception
+    //   126	130	136	java/lang/Exception
+    //   30	42	140	finally
+    //   42	66	146	finally
+    //   87	91	152	finally
+    //   95	99	164	java/lang/Exception
+    //   103	107	164	java/lang/Exception
+    //   30	42	168	java/lang/Exception
+    //   42	66	178	java/lang/Exception
+  }
+  
+  public static ServiceInfo[] b(String paramString, PackageManager paramPackageManager)
+  {
+    try
+    {
+      paramString = getPackageInfo516services;
+      return paramString;
+    }
+    catch (PackageManager.NameNotFoundException paramString)
+    {
+      paramString.printStackTrace();
+    }
+    return null;
+  }
+}

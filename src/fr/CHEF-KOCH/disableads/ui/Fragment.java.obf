@@ -1,0 +1,10 @@
+package cn.wq.disableads.b;
+
+import android.support.v7.c.a;
+import android.support.v7.c.b;
+
+public abstract interface w
+  extends b
+{
+  public abstract void a(a paramA, int paramInt, long paramLong, boolean paramBoolean);
+}

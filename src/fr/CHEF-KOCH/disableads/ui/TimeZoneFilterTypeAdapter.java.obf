@@ -1,0 +1,135 @@
+package cn.wq.disableads.b;
+
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
+import android.widget.TextView;
+import cn.wq.disableads.a.a;
+import cn.wq.disableads.f;
+import java.util.ArrayList;
+import java.util.List;
+
+class i
+  extends BaseAdapter
+  implements Filterable
+{
+  private Context b;
+  private List c;
+  private PackageManager d;
+  private List e;
+  private Object f = new Object();
+  private j g;
+  
+  public i(h paramH, Context paramContext)
+  {
+    b = paramContext;
+    c = new ArrayList();
+    d = paramContext.getPackageManager();
+  }
+  
+  public void a(int paramInt)
+  {
+    a localA = (a)getItem(paramInt);
+    d = f.a(a, b.getPackageManager());
+    e = f.a(a, f.a(b));
+    c.set(paramInt, localA);
+  }
+  
+  public void a(List paramList)
+  {
+    c.clear();
+    if (paramList != null) {
+      c.addAll(paramList);
+    }
+    notifyDataSetChanged();
+  }
+  
+  public int getCount()
+  {
+    return c.size();
+  }
+  
+  public Filter getFilter()
+  {
+    if (g == null) {
+      g = new j(this, null);
+    }
+    return g;
+  }
+  
+  public Object getItem(int paramInt)
+  {
+    return c.get(paramInt);
+  }
+  
+  public long getItemId(int paramInt)
+  {
+    return paramInt;
+  }
+  
+  public View getView(int paramInt, View paramView, ViewGroup paramViewGroup)
+  {
+    a localA = (a)c.get(paramInt);
+    if (paramView == null)
+    {
+      paramView = LayoutInflater.from(b).inflate(2130903063, null);
+      paramViewGroup = new k(this, null);
+      a = ((ImageView)paramView.findViewById(2131361834));
+      b = ((TextView)paramView.findViewById(2131361852));
+      c = ((TextView)paramView.findViewById(2131361855));
+      d = ((TextView)paramView.findViewById(2131361854));
+      e = ((TextView)paramView.findViewById(2131361853));
+      paramView.setTag(paramViewGroup);
+    }
+    for (;;)
+    {
+      if (f == null) {}
+      try
+      {
+        f = d.getApplicationIcon(a);
+        a.setImageDrawable(f);
+        b.setText(b);
+        c.setText(Integer.toString(c));
+        if (d == 0)
+        {
+          d.setVisibility(4);
+          paramInt = e;
+          if (paramInt != 0) {
+            break label278;
+          }
+          e.setVisibility(8);
+          return paramView;
+          paramViewGroup = (k)paramView.getTag();
+        }
+      }
+      catch (PackageManager.NameNotFoundException localNameNotFoundException)
+      {
+        for (;;)
+        {
+          localNameNotFoundException.printStackTrace();
+          f = b.getResources().getDrawable(17301651);
+          continue;
+          d.setVisibility(0);
+          d.setText(Integer.toString(d));
+        }
+        label278:
+        e.setVisibility(0);
+        e.setText(Integer.toString(paramInt));
+      }
+    }
+    return paramView;
+  }
+  
+  public void notifyDataSetChanged()
+  {
+    super.notifyDataSetChanged();
+  }
+}

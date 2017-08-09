@@ -1,0 +1,15 @@
+package cn.wq.disableads.b;
+
+import android.widget.ImageView;
+import android.widget.TextView;
+
+class k
+{
+  ImageView a;
+  TextView b;
+  TextView c;
+  TextView d;
+  TextView e;
+  
+  private k(i paramI) {}
+}

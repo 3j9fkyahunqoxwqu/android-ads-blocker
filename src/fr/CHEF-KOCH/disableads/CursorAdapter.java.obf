@@ -1,0 +1,80 @@
+package cn.wq.disableservice;
+
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import java.util.List;
+
+public abstract class a
+  extends BaseAdapter
+  implements Filterable
+{
+  private List a;
+  private boolean b;
+  private b c;
+  private List d;
+  private Object e = new Object();
+  
+  public a(List paramList)
+  {
+    a = paramList;
+  }
+  
+  public void a()
+  {
+    if (b) {}
+    for (boolean bool = false;; bool = true)
+    {
+      b = bool;
+      notifyDataSetChanged();
+      return;
+    }
+  }
+  
+  public void a(List paramList)
+  {
+    a.clear();
+    if (paramList != null) {
+      a.addAll(paramList);
+    }
+    if (d != null)
+    {
+      d.clear();
+      d = null;
+    }
+    notifyDataSetChanged();
+  }
+  
+  public boolean b()
+  {
+    return b;
+  }
+  
+  public int getCount()
+  {
+    return a.size();
+  }
+  
+  public Filter getFilter()
+  {
+    if (c == null) {
+      c = new b(this, null);
+    }
+    return c;
+  }
+  
+  public Object getItem(int paramInt)
+  {
+    return a.get(paramInt);
+  }
+  
+  public long getItemId(int paramInt)
+  {
+    return paramInt;
+  }
+  
+  public boolean hasStableIds()
+  {
+    return true;
+  }
+}

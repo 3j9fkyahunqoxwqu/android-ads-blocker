@@ -1,0 +1,11 @@
+package cn.wq.disableservice.a;
+
+public class b
+{
+  public boolean a;
+  public String b;
+  public boolean c;
+  public String d;
+  
+  public b() {}
+}

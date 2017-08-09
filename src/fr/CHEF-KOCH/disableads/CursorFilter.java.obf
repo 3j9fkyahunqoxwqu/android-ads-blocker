@@ -1,0 +1,69 @@
+package cn.wq.disableservice;
+
+import android.text.TextUtils;
+import android.widget.Filter;
+import android.widget.Filter.FilterResults;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+
+class b
+  extends Filter
+{
+  private b(a paramA) {}
+  
+  protected Filter.FilterResults performFiltering(CharSequence arg1)
+  {
+    Filter.FilterResults localFilterResults1 = new Filter.FilterResults();
+    if (a.a(a) == null) {}
+    synchronized (a.b(a))
+    {
+      a.b(a, new ArrayList(a.c(a)));
+      if (!TextUtils.isEmpty(???)) {
+        break label112;
+      }
+    }
+    synchronized (a.b(a))
+    {
+      ??? = new ArrayList(a.a(a));
+      values = ???;
+      count = ((List)???).size();
+      return localFilterResults1;
+      ??? = finally;
+      throw ???;
+    }
+    for (;;)
+    {
+      label112:
+      Object localObject2;
+      synchronized (a.b(a))
+      {
+        localObject2 = new ArrayList(a.a(a));
+        ??? = new ArrayList();
+        localObject2 = ((List)localObject2).iterator();
+        if (!((Iterator)localObject2).hasNext())
+        {
+          values = ???;
+          count = ((List)???).size();
+          return localFilterResults2;
+        }
+      }
+      cn.wq.disableservice.a.b localB = (cn.wq.disableservice.a.b)((Iterator)localObject2).next();
+      if (((a.d(a)) && (b.toLowerCase(Locale.getDefault()).contains(???.toString().toLowerCase(Locale.getDefault())))) || ((!a.d(a)) && (b.substring(b.lastIndexOf(".") + 1).toLowerCase(Locale.getDefault()).contains(???.toString().toLowerCase(Locale.getDefault()))))) {
+        ((List)???).add(localB);
+      }
+    }
+  }
+  
+  protected void publishResults(CharSequence paramCharSequence, Filter.FilterResults paramFilterResults)
+  {
+    a.a(a, (List)values);
+    if (count > 0)
+    {
+      a.notifyDataSetChanged();
+      return;
+    }
+    a.notifyDataSetInvalidated();
+  }
+}

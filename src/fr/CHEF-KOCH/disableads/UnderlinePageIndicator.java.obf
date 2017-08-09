@@ -1,0 +1,26 @@
+package cn.wq.disableservice;
+
+import android.support.v4.view.ce;
+
+class d
+  implements ce
+{
+  d(MyPagerTabStip paramMyPagerTabStip) {}
+  
+  public void a(int paramInt)
+  {
+    MyPagerTabStip.a(a, paramInt);
+    MyPagerTabStip.a(a);
+    if (MyPagerTabStip.b(a) != null) {
+      MyPagerTabStip.b(a).a(paramInt);
+    }
+  }
+  
+  public void a(int paramInt1, float paramFloat, int paramInt2)
+  {
+    MyPagerTabStip.a(a, paramInt1 + paramFloat);
+    a.invalidate();
+  }
+  
+  public void b(int paramInt) {}
+}

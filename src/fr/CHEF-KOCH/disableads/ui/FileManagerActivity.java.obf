@@ -1,0 +1,72 @@
+package cn.wq.disableads.b;
+
+import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import cn.wq.disableads.a;
+import cn.wq.disableads.a.b;
+import cn.wq.disableads.f;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class aa
+  extends q
+{
+  private ac i;
+  private String j;
+  
+  public aa() {}
+  
+  public static aa a(Bundle paramBundle)
+  {
+    aa localAa = new aa();
+    localAa.setArguments(paramBundle);
+    return localAa;
+  }
+  
+  private List d()
+  {
+    PackageManager localPackageManager = getActivity().getPackageManager();
+    ServiceInfo[] arrayOfServiceInfo = f.b(j, localPackageManager);
+    List localList = f.a(getActivity());
+    ArrayList localArrayList = new ArrayList();
+    int m = arrayOfServiceInfo.length;
+    int k = 0;
+    for (;;)
+    {
+      if (k >= m)
+      {
+        Collections.sort(localArrayList, new ab(this));
+        return localArrayList;
+      }
+      ServiceInfo localServiceInfo = arrayOfServiceInfo[k];
+      b localB = new b();
+      b = name;
+      d = packageName;
+      c = f.a(localServiceInfo, localPackageManager);
+      a = f.a(packageName, name, localList);
+      localArrayList.add(localB);
+      k += 1;
+    }
+  }
+  
+  protected a a()
+  {
+    i = new ac(this, getActivity(), d());
+    a(i);
+    return i;
+  }
+  
+  protected void a(Integer... paramVarArgs)
+  {
+    i.a(d());
+  }
+  
+  public void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    j = getArguments().getString("packageName");
+  }
+}

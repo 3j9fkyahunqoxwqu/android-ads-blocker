@@ -1,0 +1,23 @@
+package cn.wq.disableads.b;
+
+import android.os.Environment;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
+import android.widget.Toast;
+
+class e
+  implements Preference.OnPreferenceClickListener
+{
+  e(a paramA) {}
+  
+  public boolean onPreferenceClick(Preference paramPreference)
+  {
+    if (!Environment.getExternalStorageState().equals("mounted"))
+    {
+      Toast.makeText(a.getActivity(), "Media not mounted!", 1).show();
+      return true;
+    }
+    new f(this).execute(new Void[0]);
+    return true;
+  }
+}

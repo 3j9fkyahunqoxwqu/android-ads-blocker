@@ -1,0 +1,15 @@
+package cn.wq.disableservice.a;
+
+import android.graphics.drawable.Drawable;
+
+public class a
+{
+  public String a;
+  public String b;
+  public int c;
+  public int d;
+  public int e;
+  public Drawable f;
+  
+  public a() {}
+}

@@ -1,0 +1,174 @@
+package cn.wq.disableads.b;
+
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.view.ac;
+import android.support.v4.view.ai;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
+import cn.wq.disableads.AboutActivity;
+import cn.wq.disableads.ServiceListActivity;
+import cn.wq.disableads.a.a;
+import java.util.List;
+
+public class h
+  extends x
+  implements LoaderManager.LoaderCallbacks, ai, android.support.v7.widget.o
+{
+  private i i;
+  private boolean j;
+  private int k = -1;
+  private SearchView l;
+  private MenuItem m;
+  
+  public h() {}
+  
+  public static h a(boolean paramBoolean)
+  {
+    h localH = new h();
+    Bundle localBundle = new Bundle();
+    localBundle.putBoolean("isSystem", paramBoolean);
+    localH.setArguments(localBundle);
+    return localH;
+  }
+  
+  private void a()
+  {
+    if (k >= 0)
+    {
+      i.a(k);
+      i.notifyDataSetChanged();
+    }
+  }
+  
+  public void a(android.support.v4.a.o paramO, List paramList)
+  {
+    i.a(paramList);
+    if (isResumed()) {
+      b(true);
+    }
+    for (;;)
+    {
+      setHasOptionsMenu(true);
+      return;
+      c(true);
+    }
+  }
+  
+  public void a(ListView paramListView, View paramView, int paramInt, long paramLong)
+  {
+    super.a(paramListView, paramView, paramInt, paramLong);
+    paramView = (a)i.getItem(paramInt);
+    try
+    {
+      getActivity().getPackageManager().getPackageInfo(a, 0);
+      paramListView = new Bundle();
+      paramListView.putString("packageName", a);
+      paramListView.putString("title", b);
+      k = paramInt;
+      ac.b(m);
+      paramView = new Intent(getActivity(), ServiceListActivity.class);
+      paramView.putExtras(paramListView);
+      startActivityForResult(paramView, 0);
+      return;
+    }
+    catch (PackageManager.NameNotFoundException paramListView)
+    {
+      paramListView.printStackTrace();
+      Toast.makeText(getActivity(), 2131427376, 0).show();
+    }
+  }
+  
+  public boolean a(MenuItem paramMenuItem)
+  {
+    return true;
+  }
+  
+  public boolean a(String paramString)
+  {
+    return true;
+  }
+  
+  public boolean b(MenuItem paramMenuItem)
+  {
+    l.setQuery(null, false);
+    return true;
+  }
+  
+  public boolean b(String paramString)
+  {
+    ListAdapter localListAdapter = c();
+    if ((localListAdapter != null) && (ac.c(m))) {
+      ((Filterable)localListAdapter).getFilter().filter(paramString);
+    }
+    return true;
+  }
+  
+  public void onActivityCreated(Bundle paramBundle)
+  {
+    super.onActivityCreated(paramBundle);
+    j = getArguments().getBoolean("isSystem");
+    i = new i(this, getActivity());
+    a(i);
+    b(false);
+    getLoaderManager().initLoader(0, null, this);
+  }
+  
+  public void onActivityResult(int paramInt1, int paramInt2, Intent paramIntent)
+  {
+    super.onActivityResult(paramInt1, paramInt2, paramIntent);
+    if (paramInt1 == 0) {
+      a();
+    }
+  }
+  
+  public android.support.v4.a.o onCreateLoader(int paramInt, Bundle paramBundle)
+  {
+    return new l(getActivity(), j);
+  }
+  
+  public void onCreateOptionsMenu(Menu paramMenu, MenuInflater paramMenuInflater)
+  {
+    super.onCreateOptionsMenu(paramMenu, paramMenuInflater);
+    paramMenuInflater.inflate(2131623938, paramMenu);
+    m = paramMenu.findItem(2131361872);
+    l = ((SearchView)ac.a(m));
+    l.setQueryHint(getString(2131427391));
+    l.setOnQueryTextListener(this);
+    ac.a(m, this);
+  }
+  
+  public void onLoaderReset(android.support.v4.a.o paramO)
+  {
+    i.a(null);
+  }
+  
+  public boolean onOptionsItemSelected(MenuItem paramMenuItem)
+  {
+    switch (paramMenuItem.getItemId())
+    {
+    }
+    for (;;)
+    {
+      return super.onOptionsItemSelected(paramMenuItem);
+      new n(null).show(getChildFragmentManager(), "sort");
+      continue;
+      startActivity(new Intent(getActivity(), AboutActivity.class));
+      continue;
+      getActivity().sendBroadcast(new Intent("action_sort_change"));
+    }
+  }
+}

@@ -1,0 +1,53 @@
+package a.a.a;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.List;
+
+public class f
+  extends Thread
+{
+  private String a = null;
+  private BufferedReader b = null;
+  private List c = null;
+  private g d = null;
+  
+  public f(String paramString, InputStream paramInputStream, List paramList)
+  {
+    a = paramString;
+    b = new BufferedReader(new InputStreamReader(paramInputStream));
+    c = paramList;
+  }
+  
+  public void run()
+  {
+    for (;;)
+    {
+      try
+      {
+        str = b.readLine();
+        if (str != null) {}
+      }
+      catch (IOException localIOException1)
+      {
+        String str;
+        continue;
+      }
+      try
+      {
+        b.close();
+        return;
+      }
+      catch (IOException localIOException2) {}
+      a.c(String.format("[%s] %s", new Object[] { a, str }));
+      if (c != null) {
+        c.add(str);
+      }
+      if (d != null) {
+        d.a(str);
+      }
+    }
+  }
+}

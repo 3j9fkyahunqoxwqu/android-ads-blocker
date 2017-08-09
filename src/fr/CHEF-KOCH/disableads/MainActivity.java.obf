@@ -1,0 +1,39 @@
+package cn.wq.disableservice;
+
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.provider.Settings.Secure;
+import android.support.v4.view.ViewPager;
+import android.support.v7.a.f;
+import android.widget.Toast;
+
+public class MainActivity
+  extends f
+{
+  private ViewPager b;
+  private MyPagerTabStip c;
+  
+  public MainActivity() {}
+  
+  private boolean d()
+  {
+    boolean bool = false;
+    if (Settings.Secure.getInt(getContentResolver(), "adb_enabled", 0) > 0) {
+      bool = true;
+    }
+    return bool;
+  }
+  
+  protected void onCreate(Bundle paramBundle)
+  {
+    super.onCreate(paramBundle);
+    setContentView(2130903066);
+    b = ((ViewPager)findViewById(2131361861));
+    b.setAdapter(new c(this, this));
+    c = ((MyPagerTabStip)findViewById(2131361860));
+    c.setViewPager(b);
+    if ((Build.VERSION.SDK_INT < 11) && (!d())) {
+      Toast.makeText(this, 2131427359, 0).show();
+    }
+  }
+}

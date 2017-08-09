@@ -1,0 +1,14 @@
+package cn.wq.disableads.b;
+
+import android.support.v7.a.f;
+import android.widget.ListView;
+
+public class t
+{
+  public t() {}
+  
+  public static u a(ListView paramListView, f paramF, w paramW)
+  {
+    return u.a(paramListView, paramF, paramW);
+  }
+}

@@ -1,0 +1,175 @@
+package cn.wq.disableservice;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.as;
+import android.support.v4.view.ce;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
+
+public class MyPagerTabStip
+  extends ViewGroup
+{
+  private ViewPager a;
+  private int b;
+  private Paint c;
+  private final int d;
+  private final int e = 452984831;
+  private final int f;
+  private final int g;
+  private float h;
+  private int i = 4;
+  private int j = 2;
+  private Paint k;
+  private int l = 1;
+  private int m = 12;
+  private int n;
+  private int o;
+  private int p = 10;
+  private ce q;
+  private ce r = new d(this);
+  
+  public MyPagerTabStip(Context paramContext)
+  {
+    this(paramContext, null);
+  }
+  
+  public MyPagerTabStip(Context paramContext, AttributeSet paramAttributeSet)
+  {
+    this(paramContext, paramAttributeSet, 0);
+  }
+  
+  public MyPagerTabStip(Context paramContext, AttributeSet paramAttributeSet, int paramInt)
+  {
+    super(paramContext, paramAttributeSet, paramInt);
+    setWillNotDraw(false);
+    paramContext = paramContext.getResources();
+    paramInt = paramContext.getColor(2131165188);
+    d = paramInt;
+    f = paramInt;
+    g = -1;
+    o = ((int)paramContext.getDimension(2131230739));
+    c = new Paint();
+    c.setColor(d);
+    float f1 = getDisplayMetricsdensity;
+    j = ((int)(j * f1));
+    l = ((int)(l * f1));
+    m = ((int)(m * f1));
+    i = ((int)(i * f1));
+    p = ((int)(f1 * p));
+    k = new Paint();
+    k.setStrokeWidth(l);
+    k.setColor(452984831);
+  }
+  
+  private void a()
+  {
+    as localAs = a.getAdapter();
+    n = localAs.getCount();
+    Context localContext = getContext();
+    int i1 = 0;
+    if (i1 >= n) {
+      return;
+    }
+    TextView localTextView = new TextView(localContext);
+    localTextView.setText(localAs.getPageTitle(i1));
+    localTextView.setGravity(17);
+    localTextView.setSingleLine();
+    localTextView.setTextSize(0, o);
+    localTextView.setBackgroundResource(2130837591);
+    localTextView.setOnClickListener(new e(this, i1));
+    if (b == i1) {}
+    for (int i2 = f;; i2 = g)
+    {
+      localTextView.setTextColor(i2);
+      addView(localTextView, new ViewGroup.LayoutParams(-2, -1));
+      i1 += 1;
+      break;
+    }
+  }
+  
+  private void b()
+  {
+    as localAs = a.getAdapter();
+    int i1 = 0;
+    if (i1 >= n) {
+      return;
+    }
+    TextView localTextView = (TextView)getChildAt(i1);
+    localTextView.setText(localAs.getPageTitle(i1));
+    if (i1 == b) {
+      localTextView.setTextColor(f);
+    }
+    for (;;)
+    {
+      i1 += 1;
+      break;
+      localTextView.setTextColor(g);
+    }
+  }
+  
+  protected void onDraw(Canvas paramCanvas)
+  {
+    super.onDraw(paramCanvas);
+    int i2 = getWidth() / n;
+    int i3 = getHeight();
+    c.setColor(d);
+    float f1 = h;
+    float f2 = i2;
+    float f3 = i3 - i;
+    float f4 = h;
+    paramCanvas.drawRect(f2 * f1, f3, i2 * (1.0F + f4), i3, c);
+    int i1 = 0;
+    for (;;)
+    {
+      if (i1 >= n - 1)
+      {
+        c.setColor(452984831);
+        paramCanvas.drawRect(0.0F, i3 - j, getWidth(), i3, c);
+        return;
+      }
+      paramCanvas.drawLine((i1 + 1) * i2, m, (i1 + 1) * i2, i3 - m, k);
+      i1 += 1;
+    }
+  }
+  
+  protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2, int paramInt3, int paramInt4)
+  {
+    int i1 = getChildCount();
+    paramInt1 = 0;
+    for (;;)
+    {
+      if (paramInt1 >= i1) {
+        return;
+      }
+      View localView = getChildAt(paramInt1);
+      int i2 = paramInt3 / i1;
+      localView.layout(i2 * paramInt1, paramInt2, i2 * (paramInt1 + 1), paramInt4);
+      paramInt1 += 1;
+    }
+  }
+  
+  protected void onMeasure(int paramInt1, int paramInt2)
+  {
+    super.onMeasure(paramInt1, paramInt2);
+    measureChildren(paramInt1, paramInt2);
+    setMeasuredDimension(View.MeasureSpec.getSize(paramInt1), View.MeasureSpec.getSize(paramInt2));
+  }
+  
+  public void setViewPager(ViewPager paramViewPager)
+  {
+    a = paramViewPager;
+    b = a.getCurrentItem();
+    a.setOnPageChangeListener(r);
+    a.setPageMargin(p);
+    a();
+  }
+}

@@ -1,0 +1,81 @@
+package cn.wq.disableads.b;
+
+import android.content.Context;
+import android.support.v4.a.a;
+import cn.wq.disableads.f;
+import java.util.List;
+
+class l
+  extends a
+{
+  private boolean n;
+  private List o;
+  private m p;
+  
+  public l(Context paramContext, boolean paramBoolean)
+  {
+    super(paramContext);
+    n = paramBoolean;
+  }
+  
+  public void a(List paramList)
+  {
+    if ((i()) && (paramList != null)) {
+      c(paramList);
+    }
+    o = paramList;
+    if (g()) {
+      super.b(paramList);
+    }
+    if (paramList != null) {
+      c(paramList);
+    }
+  }
+  
+  public void b(List paramList)
+  {
+    super.a(paramList);
+    c(paramList);
+  }
+  
+  protected void c(List paramList) {}
+  
+  protected void k()
+  {
+    if (o != null) {
+      a(o);
+    }
+    if (p == null) {
+      p = new m(this);
+    }
+    if ((o == null) || (s())) {
+      l();
+    }
+  }
+  
+  protected void n()
+  {
+    b();
+  }
+  
+  protected void r()
+  {
+    super.r();
+    n();
+    if (o != null)
+    {
+      c(o);
+      o = null;
+    }
+    if (p != null)
+    {
+      f().unregisterReceiver(p);
+      p = null;
+    }
+  }
+  
+  public List w()
+  {
+    return f.a(f(), n);
+  }
+}
