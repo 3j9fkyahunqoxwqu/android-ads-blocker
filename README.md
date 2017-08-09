@@ -13,11 +13,14 @@ Android golden rules for less traffic!
 * Use push as less as possible, if not not need any Google services, consider to use [no-gapps](http://forum.xda-developers.com/showthread.php?t=1715375)
 
 
-Why you should prefer this solution over the other million solutions that are avbl.?
+Why you should prefer this solution over the other million solutions that are available?
 
 * It's clean and you can directly see what will be blocked
-* No ressource wasting because app xyz is running in the background and want to update it 
+* No resources wasting because app xyz is running in the background and want to update it 
 * It's flashable via .zip directly after a ROM update
+* A huge hosts file slows down your connection and costs more ram.
+* Backgrounds apps requiring space and additional resources.
+* Less battery drain, each time the CPU gets awake your battery needs more energy -> battery drain.
 
 
 Is this an replacement for AdGuard/AdAway?
@@ -32,7 +35,12 @@ Depending what you do with your phone, my goal is to lower the communication(s).
 
 But some apps 'caching' there ads how to get rid of them?
 
-In this case you definitively need other apps because even you block xyz domain the ads are 'hardcoded' within the app which needs illegal manipulation of the apps (often called ad-free) or (if avlb.) you need to manually remove the cache from the app, but's depending on the method and how the ads are implemented.
+In this case you definitively need other apps because even you block xyz domain the ads are 'hardcoded' within the app which needs illegal manipulation of the apps (often called ad-free) or (if avlb.) you need to manually remove the cache from the app, but it's depending on the method and how the ads are implemented.
+
+
+Alternatives:
+* LuckyPatcher + Patched Google Play Store which proxy all connections (similar like AdGuard) but without VPN API
+
 
 
 What are your domain sources and researches?
@@ -42,6 +50,10 @@ What are your domain sources and researches?
 
 
 Drawbacks
-* Since I not use facebook I block this, so you possible need to commit out everything with facebook
+* Since I not use facebook I block this, so you possible need to commit out everything with Facebook
 
 
+
+Research:
+* https://github.com/yinjimmy/firebase
+* https://github.com/AdAway/AdAway/wiki/HostsSources

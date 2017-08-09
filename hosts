@@ -1,5 +1,7 @@
 127.0.0.1       localhost
-﻿127.0.0.1 02.globalteaser.com
+#########################
+
+127.0.0.1 02.globalteaser.com
 127.0.0.1 cs07.trafmag.com
 127.0.0.1 cs06.trafmag.com
 127.0.0.1 cs05.trafmag.com
