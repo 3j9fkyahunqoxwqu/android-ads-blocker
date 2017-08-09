@@ -1,5 +1,5 @@
 com.google.firebase:firebase-ads
-gms.ads
+com.google.android.gms.ads.**
 com.google.android.gms.ads.mediation.admob
 com.google.android.gms.ads.identifier 
 AppMeasurementReceiver

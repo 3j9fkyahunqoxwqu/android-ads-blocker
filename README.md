@@ -55,9 +55,13 @@ In this case you definitively need other apps because even you block xyz domain 
 
 ## Drawbacks
 * Since I not use e.g. Facebook I block it, so you possible need to commit out everything with Facebook,...
-* It does not filter https
+* It does not filter HTTPS
+* Might not survive OTA updates
 
 
 Research:
 * https://github.com/yinjimmy/firebase
+* https://developer.android.com/distribute/best-practices/develop/google-analytics-for-firebase.html
+* https://developers.google.com/analytics/devguides/collection/android/v4/
+* https://github.com/googlesamples/google-services
 * https://github.com/AdAway/AdAway/wiki/HostsSources
